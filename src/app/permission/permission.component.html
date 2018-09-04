@@ -1,0 +1,171 @@
+<div class="container">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav-margin">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="home">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Manage Permissions
+            </li>
+        </ol>
+    </nav>
+    <form name="editUserRoleForm" class="col-sm-12 Automated_Import_Left_rt_Padi_none" [ngClass]="{ 'has-error': failed }">
+        <div class="row">
+            <p class="help-block" *ngIf="failed">
+                Something went wrong, please try again or contact administrator.
+            </p>
+            <p class="alert alert-success col-sm-12" *ngIf="successful">
+                Role(s) and Permissions saved successfully.
+            </p>
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="form-group col-md-6" show-errors>
+                        <label for="usernameLabel" class="form-control-label"> Role </label>
+                        <div [ngClass]="loaded?'loaddrpdwn':'loaddrpdwnalter'">
+                            <select name="qcRolesSelect" class="form-control" required="true" [(ngModel)]="selectedRoleId" [disabled]="loaded" title="Please Select Role" (change)="fetchForUpdateRole()">
+                              <option value="">-- Please Select --</option>
+                              <option *ngFor= "let item of roles" [value]="item._id"> {{item.title}}</option>
+                          </select>
+                        </div>
+                        <div *ngIf="loaded" class="loaddrpdwnloader">
+                            <img class="loaddrpdwnimg" src="./assets/images/ajaxLoadersmall.gif">
+                        </div>
+                        <div *ngIf="loaded" class="loaddrpdwnclear">
+                        </div>
+                        <p class="help-block" *ngIf="(editUserRoleForm?.qcRolesSelect.$dirty || editUserRoleForm?.qcRolesSelect.$touched) && editUserRoleForm?.qcRolesSelect.$error.required">
+                            <i><b>Role</b></i> is required.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <button type="button" (click)="canSave = !canSave" *ngIf="!canSave && selectedRoleId" class="btn btn-info">Edit</button>
+                <button *ngIf="canSave && selectedRoleId" [disabled]="editUserRoleForm.$invalid" class="btn btn-success" (click)="saveRolePermissions()">Save</button>
+                <a class="btn btn-danger11" ui-sref="secure.admin.roles.list">Cancel</a>
+                <br />
+                <br />
+            </div>
+
+            <div *ngIf="selectedRoleId">
+                <div style="clear:both;"></div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-md-6" show-errors>
+                            <label for="usernameLabel" class="form-control-label"> Module </label>
+                            <div ng-class="loaded?'loaddrpdwn':'loaddrpdwnalter'">
+                                <select name="qcModuleSelect" class="form-control" autofocus required="false" [(ngModel)]="selectedModuleId" [disabled]="loaded" title="Please Select Module" (change)="fetchForUpdateModule()">
+                                  <option value="">-- Please Select --</option>
+                                  <option *ngFor= "let item of modules" [value]="item._id"> {{item.title}}</option>
+                              </select>
+                            </div>
+                            <div *ngIf="loaded" class="loaddrpdwnloader">
+                                <img class="loaddrpdwnimg" src="./assets/images/ajaxLoadersmall.gif">
+                            </div>
+                            <div *ngIf="loaded" class="loaddrpdwnclear">
+                            </div>
+                            <p class="help-block" *ngIf="(editUserRoleForm?.qcModuleSelect.$dirty) && editUserRoleForm?.qcModuleSelect.$error.required">
+                                <i><b>Module</b></i> is required.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+                <fieldset [disabled]="!canSave">
+                    <div *ngIf="selectedRoleId && selectedModuleId">
+                        <div class="tablegrid" *ngIf="resources.schemas.length">
+                            <table class="table formtablewidth displaytable displaytable11 displaytable-nomargin">
+                                <thead class="thead-inverse tableborder">
+                                    <tr>
+                                        <td rowspan="2" class="col-sm-5 tableborder tablecontent">
+                                            <b>Project</b>
+                                        </td>
+                                        <td class="text-center tableborder rowbackground" colspan="5">
+                                            <b>Permissions</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center columnbackground">
+                                            <label>
+                                              View <br /><input name="view" (change)="processAll('view',resources.schemas,checkUncheckAll.schemas)"
+                                                                [(ngModel)]="checkUncheckAll.schemas.view"
+                                                                type="checkbox"
+                                                                title="{{titleMessege}}" />
+                                          </label>
+                                        </td>
+                                        <td class="text-center columnbackground">
+                                            <label>
+                                              Create <br /><input name="create" (change)="processAll('create',resources.schemas,checkUncheckAll.schemas)"
+                                                                  [(ngModel)]="checkUncheckAll.schemas.create"
+                                                                  type="checkbox"
+                                                                  title="{{titleMessege}}" />
+                                          </label>
+                                        </td>
+                                        <td class="text-center  columnbackground">
+                                            <label>
+                                              Edit <br /><input name="edit" (change)="processAll('edit',resources.schemas,checkUncheckAll.schemas)"
+                                                                [(ngModel)]="checkUncheckAll.schemas.edit"
+                                                                type="checkbox"
+                                                                title="{{titleMessege}}" />
+                                          </label>
+                                        </td>
+                                        <td class="text-center  columnbackground">
+                                            <label>
+                                              Review <br /><input name="review" (change)="processAll('review',resources.schemas,checkUncheckAll.schemas)"
+                                                                  [(ngModel)]="checkUncheckAll.schemas.review"
+                                                                  type="checkbox"
+                                                                  title="{{titleMessege}}" />
+                                          </label>
+                                        </td>
+                                        <td class="text-center editschema columnbackground">
+                                            <label>
+                                              Build Project <br /><input name="editSchema" (change)="processAll('editSchema',resources.schemas,checkUncheckAll.schemas)"
+                                                                      [(ngModel)]="checkUncheckAll.schemas.editSchema"
+                                                                      type="checkbox"
+                                                                      title="{{titleMessege}}" />
+                                          </label>
+                                        </td>
+
+                                    </tr>
+
+                                </thead>
+                                <tbody class="tableborder">
+                                    <tr class="tableborder" name="rolemodules" [(ngModel)]="role.modules" *ngFor="let item of resources.schemas">
+                                        <td scope="row" class="tableborder"> {{item.title}}</td>
+                                        <td class="text-center columnbackground">
+                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.view" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.create" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                        </td>
+                                        <td class="text-center columnbackground">
+                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.edit" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.review" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                        </td>
+                                        <td class="text-center columnbackground">
+                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.editSchema" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12" *ngIf="selectedRoleId">
+                <button type="button" (click)="canSave = !canSave" *ngIf="!canSave" class="btn btn-info">Edit</button>
+                <button *ngIf="canSave" [disabled]="editUserRoleForm.$invalid" class="btn btn-success" (click)="saveRolePermissions()">Save</button>
+                <a class="btn btn-danger11" ui-sref="secure.admin.roles.list">Cancel</a>
+                <br />
+                <br />
+            </div>
+        </div>
+        <br />
+    </form>
+
+</div>

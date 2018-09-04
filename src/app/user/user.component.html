@@ -1,0 +1,33 @@
+<div class="container">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav-margin">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="home">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                Manage Users
+            </li>
+        </ol>
+    </nav>
+    <h1>Manage Users</h1>
+    <!-- <a class="navbar-right" href="#register"><i class="btn btn-primary btn-right"></i> Add</a> -->
+    <button class="btn btn-primary btn-right" (click)="goToLink()">Add</button>
+    <table class="table">
+        <!-- <td><button class="btn btn-primary" ng-click="add()">Add</button></td> -->
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Action</th>
+                <!-- <th>&nbsp;</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userList">
+                <td><a href="users/{{user._id}}">{{user.firstname}}</a></td>
+                <td><button class="btn btn-danger" (click)="remove(user._id)">Remove</button></td>
+                <!-- <td><button class="btn btn-warning" ng-click="edit(user._id)">Edit</button></td> -->
+            </tr>
+        </tbody>
+    </table>
+
+</div>

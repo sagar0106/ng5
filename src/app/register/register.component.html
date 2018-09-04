@@ -1,0 +1,47 @@
+<div class="form-container">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav-margin">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="home">Home</a>
+            </li>
+            <li *ngIf="userId" class="breadcrumb-item active" aria-current="page">
+                My Profile
+            </li>
+            <li *ngIf="!userId" class="breadcrumb-item active" aria-current="page">
+                Register
+            </li>
+        </ol>
+    </nav>
+    <h1 *ngIf="userId">My Profile</h1>
+    <h1 *ngIf="!userId">Register</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" class="form-control" [(ngModel)]="user.firstname" required />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" class="form-control" [(ngModel)]="user.lastname" required />
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" [(ngModel)]="user.username" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control" [(ngModel)]="user.password" required />
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <input type="text" id="role" class="form-control" [(ngModel)]="user.role" required />
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" id="email" class="form-control" [(ngModel)]="user.email" required />
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="saveUser()">Save</button>
+            <button class="btn btn-danger" (click)="clearUser()">Clear</button>
+        </div>
+    </form>
+</div>

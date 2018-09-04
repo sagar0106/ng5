@@ -1,0 +1,24 @@
+<div class="loginPage">
+    <h2>Login</h2>
+    <form>
+        <div>
+            <label for="username"><b>Username</b></label>
+            <input type="text" [(ngModel)]="user.username" placeholder="Enter Username" name="username" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" [(ngModel)]="user.password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit" (click)="login(user)">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+            <span class="psw" (click)="registerUser()">  <a style="color:blue;cursor: pointer">Register</a></span>
+
+        </div>
+    </form>
+</div>

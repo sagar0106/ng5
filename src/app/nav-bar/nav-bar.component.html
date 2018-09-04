@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<nav class="navbar navbar-inverse navbar-fixed-top main-header" role="navigation" *ngIf="isLoggedIn | async">
+    <!-- Brand and toggle get mobile display -->
+    <div class="navbar-header">
+        <!-- <a class="navbar-brand" href="#/login"><img src="images/pivot-icon.png" alt="" /></a> -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+    </div>
+
+    <ul class="nav navbar-right top-nav" style="cursor: pointer;" (mouseleave)="menuOpen = setMenuclose()" (click)="menuOpen = !menuOpen">
+        <li class="dropdown" [ngClass]="{'open' : menuOpen}">
+            <a class="dropdown-toggle" data-toggle="dropdown"><i class="user-img"><img src="images/default.png" alt=""/></i>&nbsp; {{user.firstname || 'User Name' }} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+                <li><a href="user/{{user._id}}"><i class="fa fa-fw fa-user"></i> My Profile</a></li>
+                <li><a *ngIf="user.role=='Admin'" href="user" (click)="goToUser()"><i class="fa fa-fw fa-users"></i> Manage Users</a></li>
+                <li><a *ngIf="user.role=='Admin'" href="permission" (click)="goToPermission()"><i class="fa fa-fw fa-users"></i> Manage Permissions</a></li>
+                <li class="divider"></li>
+                <li><a (click)="logout()"><i class="fa fa-fw fa-power-off"></i> Sign Out</a></li>
+
+            </ul>
+        </li>
+    </ul>
+</nav>

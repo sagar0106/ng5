@@ -1,0 +1,58 @@
+<div class="container">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav-margin">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="home">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="project">Projects</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+                To Do's
+            </li>
+        </ol>
+    </nav>
+    <h1>To Do List</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Is Completed</th>
+                <th>Action</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input class="form-control" [(ngModel)]="item.title"></td>
+                <td><input class="form-control" [(ngModel)]="item.description"></td>
+                <td>
+                    <select class="form-control" [(ngModel)]="item.isCompleted">
+                  <option>Yes</option>
+                  <option>No</option>
+                  </select>
+                </td>
+                <td><button class="btn btn-primary" (click)="add()">Add/Update</button></td>
+                <td><button class="btn btn-info" (click)="deselect()">Clear</button></td>
+            </tr>
+            <tr [ngClass]="{success: item.isSelected}" *ngFor="let item of itemList; let i=index;" (click)="item.isSelected = !item.isSelected;selectRow(item, i)" style="cursor: move">
+                <td>{{item.title}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.isCompleted}}</td>
+                <td><button class=" btn btn-danger " (click)="remove(item._id) ">Remove</button></td>
+                <td><button class="btn btn-warning " (click)="edit(item._id) ">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-xs-6 ">
+        <div class="btn btn-info btn-lg btn-full-width ">
+            <span class="glyphicon glyphicon-menu-up " (click)="moveItemUp(); ">Up</span>
+        </div>
+        <div class="btn btn-info btn-lg btn-full-width ">
+            <span class="glyphicon glyphicon-menu-down " (click)="moveItemDown(); ">Down</span>
+        </div>
+    </div>
+
+</div>
