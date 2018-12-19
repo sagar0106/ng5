@@ -15,6 +15,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { DataService } from '../services/data.service';
+import { ProjectModalComponent } from './project-modal/project-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { DataService } from '../services/data.service';
     ToDoComponent,
     UserComponent,
     NavBarComponent,
+    ProjectModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService, DataService],
   bootstrap: [AppComponent]

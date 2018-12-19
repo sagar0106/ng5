@@ -40,7 +40,7 @@
             </div>
             <div class="col-sm-12">
                 <button type="button" (click)="canSave = !canSave" *ngIf="!canSave && selectedRoleId" class="btn btn-info">Edit</button>
-                <button *ngIf="canSave && selectedRoleId" [disabled]="editUserRoleForm.$invalid" class="btn btn-success" (click)="saveRolePermissions()">Save</button>
+                <button *ngIf="canSave && selectedRoleId" [disabled]="editUserRoleForm?.$invalid" class="btn btn-success" (click)="saveRolePermissions()">Save</button>
                 <a class="btn btn-danger11" ui-sref="secure.admin.roles.list">Cancel</a>
                 <br />
                 <br />
@@ -88,7 +88,7 @@
                                         <td class="text-center columnbackground">
                                             <label>
                                               View <br /><input name="view" (change)="processAll('view',resources.schemas,checkUncheckAll.schemas)"
-                                                                [(ngModel)]="checkUncheckAll.schemas.view"
+                                                                [checked]="checkUncheckAll.schemas.view"
                                                                 type="checkbox"
                                                                 title="{{titleMessege}}" />
                                           </label>
@@ -96,7 +96,7 @@
                                         <td class="text-center columnbackground">
                                             <label>
                                               Create <br /><input name="create" (change)="processAll('create',resources.schemas,checkUncheckAll.schemas)"
-                                                                  [(ngModel)]="checkUncheckAll.schemas.create"
+                                                                  [checked]="checkUncheckAll.schemas.create"
                                                                   type="checkbox"
                                                                   title="{{titleMessege}}" />
                                           </label>
@@ -104,7 +104,7 @@
                                         <td class="text-center  columnbackground">
                                             <label>
                                               Edit <br /><input name="edit" (change)="processAll('edit',resources.schemas,checkUncheckAll.schemas)"
-                                                                [(ngModel)]="checkUncheckAll.schemas.edit"
+                                                                [checked]="checkUncheckAll.schemas.edit"
                                                                 type="checkbox"
                                                                 title="{{titleMessege}}" />
                                           </label>
@@ -112,7 +112,7 @@
                                         <td class="text-center  columnbackground">
                                             <label>
                                               Review <br /><input name="review" (change)="processAll('review',resources.schemas,checkUncheckAll.schemas)"
-                                                                  [(ngModel)]="checkUncheckAll.schemas.review"
+                                                                  [checked]="checkUncheckAll.schemas.review"
                                                                   type="checkbox"
                                                                   title="{{titleMessege}}" />
                                           </label>
@@ -120,7 +120,7 @@
                                         <td class="text-center editschema columnbackground">
                                             <label>
                                               Build Project <br /><input name="editSchema" (change)="processAll('editSchema',resources.schemas,checkUncheckAll.schemas)"
-                                                                      [(ngModel)]="checkUncheckAll.schemas.editSchema"
+                                                                      [checked]="checkUncheckAll.schemas.editSchema"
                                                                       type="checkbox"
                                                                       title="{{titleMessege}}" />
                                           </label>
@@ -130,22 +130,22 @@
 
                                 </thead>
                                 <tbody class="tableborder">
-                                    <tr class="tableborder" name="rolemodules" [(ngModel)]="role.modules" *ngFor="let item of resources.schemas">
+                                    <tr class="tableborder" *ngFor="let item of resources.schemas; let i = index">
                                         <td scope="row" class="tableborder"> {{item.title}}</td>
                                         <td class="text-center columnbackground">
-                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.view" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                            <input type="checkbox" name="checkbox{i}" [checked]="item.view" (change)="item.view=!item.view;checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.create" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                            <input type="checkbox" name="checkbox{i}" [checked]="item.create" (change)="item.create=!item.create;checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
                                         </td>
                                         <td class="text-center columnbackground">
-                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.edit" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                            <input type="checkbox" name="checkbox{i}" [checked]="item.edit" (change)="item.edit=!item.edit;checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
                                         </td>
                                         <td class="text-center">
-                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.review" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                            <input type="checkbox" name="checkbox{i}" [checked]="item.review" (change)="item.review=!item.review;checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
                                         </td>
                                         <td class="text-center columnbackground">
-                                            <input type="checkbox" name="checkbox{$index}" [(ngModel)]="item.editSchema" (change)="checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
+                                            <input type="checkbox" name="checkbox{i}" [checked]="item.editSchema" (change)="item.editSchema=!item.editSchema;checkBoxCheck(item); checkBoxCheckAll(resources.schemas, checkUncheckAll.schemas)" />
                                         </td>
                                     </tr>
                                 </tbody>
@@ -159,7 +159,7 @@
         <div class="row">
             <div class="col-sm-12" *ngIf="selectedRoleId">
                 <button type="button" (click)="canSave = !canSave" *ngIf="!canSave" class="btn btn-info">Edit</button>
-                <button *ngIf="canSave" [disabled]="editUserRoleForm.$invalid" class="btn btn-success" (click)="saveRolePermissions()">Save</button>
+                <button *ngIf="canSave" [disabled]="editUserRoleForm?.$invalid" class="btn btn-success" (click)="saveRolePermissions()">Save</button>
                 <a class="btn btn-danger11" ui-sref="secure.admin.roles.list">Cancel</a>
                 <br />
                 <br />

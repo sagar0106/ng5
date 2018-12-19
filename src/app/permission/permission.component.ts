@@ -21,7 +21,7 @@ export class PermissionComponent implements OnInit {
   failed;
   successful;
   titleMessege = 'Select/Desellect All';
-
+  oldSchemaAndModulerResource = [];
   checkUncheckAll = {
       schemas: {
           view: false,
@@ -130,7 +130,7 @@ export class PermissionComponent implements OnInit {
 
            this.dataService.getAll('project')
           .subscribe(response => {
-                this.resources.schemas = ((response.data || []).map(function(item) {
+                this.resources.schemas = ((response.data || []).map( (item) => {
                     return {
                         '_id': item._id,
                         'title': item.title,
@@ -139,12 +139,12 @@ export class PermissionComponent implements OnInit {
                     };
                 }));
 
-                const existingSchemaPermission = ((this.role.modules || []).find(function(obj) {
+                const existingSchemaPermission = ((this.role.modules || []).find(obj => {
                     return obj._id === this.selectedModuleId;
                 }) || {}).permissions || [];
 
 
-                this.resources.schemas.forEach(function(schema) {
+                this.resources.schemas.forEach(schema => {
                     this.existingResource = {};
                     this.existingResource = existingSchemaPermission.find(function(obj) { return obj._id === schema._id ; });
                     if (this.existingResource) {
@@ -163,7 +163,7 @@ export class PermissionComponent implements OnInit {
       saveRolePermissions() {
 
         let module;
-        this.role.modules = (this.modules || []).map(function(item) {
+        this.role.modules = (this.modules || []).map((item) => {
             module = {};
             module._id = item._id;
             module.permissions = [];

@@ -1,15 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './../../services/data.service';
 import { Router, ActivatedRoute} from '@angular/router';
+import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-to-do',
   templateUrl: './to-do.component.html',
-  styleUrls: ['./to-do.component.scss']
+  styleUrls: ['./to-do.component.scss'],
+  animations: [
+
+    trigger('listAnimation', [
+      transition('* => *', [
+
+        query(':enter', style({ opacity: 0 }), {optional: true}),
+
+        query(':enter', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 1, transform: 'translateY(0)',     offset: 1.0}),
+          ]))]), {optional: true}),
+
+        query(':leave', stagger('300ms', [
+          animate('1s ease-in', keyframes([
+            style({opacity: 1, transform: 'translateY(0)', offset: 0}),
+            style({opacity: .5, transform: 'translateY(35px)',  offset: 0.3}),
+            style({opacity: 0, transform: 'translateY(-75%)',     offset: 1.0}),
+          ]))]), {optional: true})
+      ])
+    ])
+
+  ]
 })
 export class ToDoComponent implements OnInit {
 itemList = [];
-item = '';
+item = {title: '', description: '', isCompleted: ''};
 selectedItem = '';
 projectId = '';
   constructor(private router: Router, private dataService: DataService, private activatedRoute: ActivatedRoute) { }
@@ -31,7 +57,7 @@ projectId = '';
                         }
                     });
                     this.itemList = response.toDo;
-                    this.item = '';
+                    this.item = {title: '', description: '', isCompleted: ''};
                 }, error => {
                   // Handle error here
                   if (error.status === 401) {
@@ -41,23 +67,32 @@ projectId = '';
             }
 
             add() {
+                const finalItem = _.cloneDeep(this.item);
                 if (this.item['isCompleted'] === 'Yes') {
-                    this.item['isCompleted'] = true;
+                    finalItem['isCompleted'] = true;
                 } else if (this.item['isCompleted'] === 'No') {
-                    this.item['isCompleted'] = false;
+                    finalItem['isCompleted'] = false;
                 }
                 if (this.item['_id']) {
-                      this.dataService.update('toDo', this.item)
+                      this.dataService.update('toDo', finalItem)
                       .subscribe(response => {
                         this.refresh();
                     });
                 } else {
-                  this.dataService.create('toDo', this.item)
+                  this.dataService.create('toDo', finalItem)
                   .subscribe(response => {
-                        const body = { $push: { toDo: [response._id] } };
+                        const body = { $push: { toDo: [JSON.parse(response._body)._id] } };
                           this.dataService.updateJoin('project', this.projectId, body)
                           .subscribe(data => {
-                            this.refresh();
+                           // this.refresh();
+                           const responsebody = JSON.parse(response._body);
+                           if (responsebody.isCompleted) {
+                            responsebody.isCompleted = 'Yes';
+                        } else {
+                            responsebody.isCompleted = 'No';
+                        }
+                           this.itemList.push(responsebody);
+                           this.item = {title: '', description: '', isCompleted: ''};
                         });
                     });
                 }
@@ -69,7 +104,8 @@ projectId = '';
                     const body = { $pullAll: { toDo: [id] } };
                     this.dataService.updateJoin('project', this.projectId, body)
                           .subscribe(data => {
-                        this.refresh();
+                       // this.refresh();
+                       _.remove(this.itemList, {'_id': id} );
                     });
                 });
             }
@@ -87,7 +123,7 @@ projectId = '';
             }
 
             deselect() {
-                this.item = '';
+                this.item = {title: '', description: '', isCompleted: ''};
             }
 
             moveItemUp() {

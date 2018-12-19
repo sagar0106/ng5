@@ -12,9 +12,10 @@ import { AuthService } from './../auth/auth.service';
 })
 export class ProjectComponent implements OnInit {
 showModal = false;
+isEdited = false;
 itemList = [];
 modules = [];
-item = '';
+item = {};
   constructor(private router: Router, private dataService: DataService, private authService: AuthService) { }
   ngOnInit() {
     this.refresh();
@@ -59,10 +60,11 @@ remove(id) {
 }
 
 edit(id) {
+    this.isEdited = true;
   this.dataService.getById('project', id)
   .subscribe(response => {
         this.item = response;
-        this.showModal = true;
+        document.getElementById('id01').style.display = 'block';
     }, error => {
     });
     // $scope.item = angular.copy(item);
@@ -83,34 +85,23 @@ checkPermission(data) {
     return finalData;
 }
 
-// }])
-// .directive('modal', function() {
-// return {
-//     template: '<div class="modal fade">' +
-//         '<div class="modal-dialog">' +
-//         '<div class="modal-content">' +
-//         '<div class="modal-header">' +
-//         '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
-//         '<h4 class="modal-title">{{ item.content.title }}</h4>' +
-//         '</div>' +
-//         '<div class="modal-body" ng-transclude></div>' +
-//         '</div>' +
-//         '</div>' +
-//         '</div>',
-//     restrict: 'E',
-//     transclude: true,
-//     replace: true,
-//     scope: true,
-//     link: function postLink(scope, element, attrs, ctrl) {
-//         //   scope.title = attrs.title;
-//         scope.$watch(attrs.visible, function(value) {
+getEditDataSource(item) {
+    this.item = item;
+    this.isEdited = true;
+    document.getElementById('id01').style.display = 'block';
+  }
 
-//             if (value)
-//                 $(element).modal('show');
-//             else
-//                 $(element).modal('hide');
-//         });
-//     }
-// };
-// });
+//   updateDataSource(dataSourceForms) {
+//     this.dashboard.dataSources[this.datasourceIndex] = dataSourceForms;
+//     this.getDataSourceForm();
+//   }
+createDataSource() {
+    document.getElementById('id01').style.display = 'block';
+    this.item = {
+        title: '',
+        description: '',
+        isCompleted: 'Yes'
+      };
+    this.isEdited = false;
+  }
 }
