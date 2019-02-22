@@ -1,0 +1,58 @@
+
+  <div class="add-datasource-modal-scrol">
+      <form #dashboardForm="ngForm" novalidate>
+
+          <label class="mar-padi-11" style="margin-top: 0px !important;"><strong>Add Project<i style="color:#a94442"> *</i></strong></label>
+          <div>
+              <div class="add-datasource-popup-select">
+                  <label><strong>Module<i style="color:#a94442"> *</i></strong></label>
+                  <select class="form-control" name="method" #method="ngModel" [(ngModel)]="item.module" required ngModel>
+                      <option value="">Please Select</option>
+                      <option *ngFor="let module of dataSourceMaster;let ind=index">{{ module.title }}</option>
+                  </select>
+                  <span *ngIf="method.invalid && isFormSubmitted">
+                      <small *ngIf="method.errors.required" id="method" class="form-text text-muted text-danger"><strong>Module</strong>
+                      is required</small>
+                  </span>
+              </div>
+              <div class="add-datasource-popup-select">
+                  <label><b>Title<i style="color:#a94442"> *</i></b></label>
+                  <input type="text" name="title" #title="ngModel" [(ngModel)]="item.title" class="form-control" required minlength="2" maxlength="100" trim="blur"
+                  />
+                  <span *ngIf="title.invalid && isFormSubmitted">
+                      <small *ngIf="title.errors.required" id="title" class="form-text text-muted text-danger"><strong>Title</strong>
+                     is required</small>
+                      <small *ngIf="title.errors.minlength" id="title" class="form-text text-muted text-danger"> <strong>Title</strong> should be minimum 2 characters.</small>
+                      <small *ngIf="title.errors.maxlength" id="title" class="form-text text-muted text-danger"><strong>Title</strong>
+                       should be maximum 100 characters long.</small>
+                  </span>
+                  <small *ngIf="isRepeatedTitle" id="title" class="form-text text-muted text-danger"><strong>Title</strong> already exists.</small>
+              </div>
+         
+              <!-- <div class="add-datasource-popup-select">
+                  <label><strong>Description</strong></label>
+                  <input type="text" name="resType" #url="ngModel" [(ngModel)]="item.description" class="form-control" />
+              </div> -->
+
+              <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                  <button type="button" *ngIf="!isEdited" class="btn btn-primary add-btn-width datasource-add-button-width" (click)="add(item)">
+                      <span class="glyphicon glyphicon-plus"></span> 
+                      ADD
+                  </button>
+                  <button type="button" *ngIf="isEdited" class="btn btn-primary" (click)="add(item)">
+                      <span><img src="assets/update-icon.png" /></span> 
+                      UPDATE
+                  </button>
+                  <!-- <button type="button" class="btn btn-danger btn-danger-mar-left" (click)="closeModelOnCancel()">
+                      <span class="glyphicon glyphicon-remove-circle"></span> 
+                      {{ 'GENERIC.CANCEL' | translate }}
+                  </button> -->
+                  
+              </div>
+
+          </div>
+      </form>
+  </div>
+
+
+  
