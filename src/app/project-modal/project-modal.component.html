@@ -1,20 +1,16 @@
-
+<div class="w3-modal-content" style="overflow: auto;">
+    <header class="w3-container w3-teal">
+        <div style="color: black;"><span (click)="isFormSubmitted=false;closeModelOnCross()"
+                class="popup-close-icon-generic"><img src="assets/vc-popup-close-icon.png"></span>
+            <h2>Add Project</h2>
+        </div>
+    </header>
   <div class="add-datasource-modal-scrol">
       <form #dashboardForm="ngForm" novalidate>
 
-          <label class="mar-padi-11" style="margin-top: 0px !important;"><strong>Add Project<i style="color:#a94442"> *</i></strong></label>
+          <!-- <label class="mar-padi-11" style="margin-top: 0px !important;"><strong>Add Project<i style="color:#a94442"> *</i></strong></label> -->
           <div>
-              <div class="add-datasource-popup-select">
-                  <label><strong>Module<i style="color:#a94442"> *</i></strong></label>
-                  <select class="form-control" name="method" #method="ngModel" [(ngModel)]="item.module" required ngModel>
-                      <option value="">Please Select</option>
-                      <option *ngFor="let module of dataSourceMaster;let ind=index">{{ module.title }}</option>
-                  </select>
-                  <span *ngIf="method.invalid && isFormSubmitted">
-                      <small *ngIf="method.errors.required" id="method" class="form-text text-muted text-danger"><strong>Module</strong>
-                      is required</small>
-                  </span>
-              </div>
+      
               <div class="add-datasource-popup-select">
                   <label><b>Title<i style="color:#a94442"> *</i></b></label>
                   <input type="text" name="title" #title="ngModel" [(ngModel)]="item.title" class="form-control" required minlength="2" maxlength="100" trim="blur"
@@ -28,7 +24,17 @@
                   </span>
                   <small *ngIf="isRepeatedTitle" id="title" class="form-text text-muted text-danger"><strong>Title</strong> already exists.</small>
               </div>
-         
+              <div class="add-datasource-popup-select">
+                <label><strong>Module<i style="color:#a94442"> *</i></strong></label>
+                <select class="form-control" name="method" #method="ngModel" [(ngModel)]="item.module" required ngModel>
+                    <option value="">Please Select</option>
+                    <option *ngFor="let module of modules;let ind=index">{{ module.title }}</option>
+                </select>
+                <span *ngIf="method.invalid && isFormSubmitted">
+                    <small *ngIf="method.errors.required" id="method" class="form-text text-muted text-danger"><strong>Module</strong>
+                    is required</small>
+                </span>
+            </div>
               <!-- <div class="add-datasource-popup-select">
                   <label><strong>Description</strong></label>
                   <input type="text" name="resType" #url="ngModel" [(ngModel)]="item.description" class="form-control" />
