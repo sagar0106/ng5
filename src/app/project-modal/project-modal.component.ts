@@ -8,7 +8,7 @@ import { DataService } from './../../services/data.service';
 export class ProjectModalComponent implements OnInit {
   @Input()  isEdited;
   @Input() item;
-  @Output() addProject = new EventEmitter<object>();
+  @Output() addProject = new EventEmitter();
   modules = [];
   constructor(private dataService: DataService) { }
 
@@ -21,6 +21,7 @@ export class ProjectModalComponent implements OnInit {
 
   add(item) {
    this.addProject.emit(item);
+   document.getElementById('id01').style.display = 'none';
   }
 
   closeModelOnCross() {

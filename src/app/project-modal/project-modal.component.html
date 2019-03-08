@@ -28,7 +28,7 @@
                 <label><strong>Module<i style="color:#a94442"> *</i></strong></label>
                 <select class="form-control" name="method" #method="ngModel" [(ngModel)]="item.module" required ngModel>
                     <option value="">Please Select</option>
-                    <option *ngFor="let module of modules;let ind=index">{{ module.title }}</option>
+                    <option *ngFor="let module of modules;let ind=index" [value]="module._id">{{ module.title }}</option>
                 </select>
                 <span *ngIf="method.invalid && isFormSubmitted">
                     <small *ngIf="method.errors.required" id="method" class="form-text text-muted text-danger"><strong>Module</strong>

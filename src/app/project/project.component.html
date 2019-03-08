@@ -33,7 +33,7 @@
         </tbody>
     </table>
     <div id="id01" class="w3-modal">
-        <app-project-modal *ngIf="item" [isEdited]="isEdited" [item]="item" (sourceChange)="add($event)"></app-project-modal>
+        <app-project-modal *ngIf="item" [isEdited]="isEdited" [item]="item" (addProject)="add($event)"></app-project-modal>
     </div>
 
 </div>
