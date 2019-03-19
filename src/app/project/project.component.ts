@@ -47,7 +47,15 @@ item = {};
     } else {
       this.dataService.create('project', item)
       .subscribe(response => {
-            this.refresh();
+            //this.refresh();
+            this.itemList.push(JSON.parse(response._body));
+            // this.dataService.getById('role', this.selectedRoleId)
+            // .subscribe(role => {
+            // this.dataService.update('role', role)
+            // .subscribe(response => {
+
+            // })
+         // })
         });
     }
 }
