@@ -23,10 +23,11 @@ export class DataService {
 
   getAll(apiKey, query?) {
    // let dataQuery;
-    this.bindTokenInHeader();
+   query = query ? query : {};
+   this.bindTokenInHeader();
    // dataQuery = JSON.stringify(query);
    //   return this.http.get(`${this.url}/?dataQuery=${encodeURIComponent(dataQuery)}`, this.options)
-   return this.http.get(`${this.url}/${apiKey}`, this.options)
+   return this.http.get(`${this.url}/${apiKey}?where=${JSON.stringify(query)}`, this.options)
         .map(response => response.json())
         .catch(this.handleError);
   }

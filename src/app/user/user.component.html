@@ -17,6 +17,7 @@
         <thead>
             <tr>
                 <th>First Name</th>
+                <th>Created Date</th>
                 <th>Action</th>
                 <!-- <th>&nbsp;</th> -->
             </tr>
@@ -24,7 +25,8 @@
         <tbody>
             <tr *ngFor="let user of userList">
                 <td><a href="users/{{user._id}}">{{user.firstname}}</a></td>
-                <td><button class="btn btn-danger" (click)="remove(user._id)">Remove</button></td>
+                <td>{{user.createdDate}}</td>
+                <td><span style="color:#e01616;cursor: pointer;margin-left: 12px" (click)="remove(user._id)" class="fas fa-trash"></span></td>
                 <!-- <td><button class="btn btn-warning" ng-click="edit(user._id)">Edit</button></td> -->
             </tr>
         </tbody>

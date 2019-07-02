@@ -10,13 +10,15 @@
         </ol>
     </nav>
     <h1>Project List</h1>
-    <button class="btn btn-primary btn-right" (click)="createDataSource()">Add</button>
+    <button class="btn btn-primary btn-right" style="background:#385796" (click)="createDataSource()">Add</button>
     <table class="table">
         <thead>
             <tr>
-                <th>Title</th>
+                <th>ID</th>
+                <th>Modified Date</th>
+                <th>Created Date</th>
                 <th>Action</th>
-                <th>&nbsp;</th>
+                <!-- <th>&nbsp;</th> -->
             </tr>
         </thead>
         <tbody>
@@ -26,9 +28,11 @@
               <td><button class="btn btn-info" ng-click="deselect()">Clear</button></td>
           </tr> -->
             <tr *ngFor="let item of itemList">
-                <td><a href="project/{{item._id}}">{{item.title}}</a></td>
-                <td><button class="btn btn-danger" (click)="remove(item._id)">Remove</button></td>
-                <td><button class="btn btn-warning" (click)="edit(item._id)">Edit</button></td>
+                <td>{{item.userId}}</td>
+                <td>{{item.modifiedDate}}</td>
+                <td>{{item.createdDate}}</td>
+                <!-- <td><button class="btn btn-danger" (click)="remove(item._id)">Remove</button></td> -->
+                <td><span style="color:#385796;cursor: pointer;" (click)="edit(item._id)" class="fas fa-edit"></span>&nbsp;&nbsp;<span style="color:#e01616;cursor: pointer;" (click)="remove(item._id)" class="fas fa-trash"></span></td>
             </tr>
         </tbody>
     </table>

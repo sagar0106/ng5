@@ -24,7 +24,8 @@ item = {};
     this.showModal = false;
     this.dataService.getAll('project')
     .subscribe(response => {
-      this.itemList = this.checkPermission(response.data);
+      // this.itemList = this.checkPermission(response.data);
+      this.itemList = response.data;
       this.item = '';
       this.dataService.getAll('module')
       .subscribe(data => {

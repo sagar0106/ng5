@@ -28,4 +28,12 @@ export class ProjectModalComponent implements OnInit {
     document.getElementById('id01').style.display = 'none';
     document.body.style.overflow = 'auto';
   }
+
+  getUser(id) {
+    const query = {'userId': id};
+    this.dataService.getAll('user', query)
+    .subscribe(response => {
+          this.item = response.data[0];
+      });
+  }
 }
