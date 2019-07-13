@@ -17,6 +17,8 @@ import { AuthService } from './auth/auth.service';
 import { DataService } from '../services/data.service';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReportComponent } from './report/report.component';
+import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserComponent,
     NavBarComponent,
     ProjectModalComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DxDataGridModule
   ],
   providers: [AuthService, DataService],
   bootstrap: [AppComponent]

@@ -4,7 +4,8 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/regular';
-
+@import "~devextreme/dist/css/dx.common.css";
+@import "~devextreme/dist/css/dx.light.css";
 /* @font-face {
     font-family: 'open_sanslight';
     src: url('open-sans.light.eot');
@@ -123,22 +124,6 @@ a {
     background: #47A1DA;
     color: #fff;
     border-radius: 4px 4px 0 0;
-}
-
-.home-main .box-bg-main-link {
-    width: 45%;
-    margin: 0;
-    display: table;
-    text-align: center;
-    color: #fff;
-    float: left;
-    margin-left: 20px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    padding: 3% 3%;
-    box-sizing: border-box;
-    background: rgb(31, 31, 31);
-    font-size: 18px;
 }
 
 .donor-analytics {
