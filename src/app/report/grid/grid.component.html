@@ -1,0 +1,19 @@
+<div>
+  <dx-data-grid id="gridContainer"
+      [dataSource]="dataSource"
+      [showBorders]="true"  [allowColumnResizing]="true" [columnMinWidth]="50"
+      [columnAutoWidth]="true" [allowColumnReordering]="true" [width]="1000"
+       [showRowLines]="true" [rowAlternationEnabled]="true"
+      >
+      <dxo-group-panel [visible]="true"></dxo-group-panel>
+      <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+      <dxo-scrolling [useNative]="true" [showScrollbar]="true"></dxo-scrolling>
+      <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+      <dxo-filter-row [visible]="true">
+      </dxo-filter-row>
+      <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [visible]="true"
+          [allowedPageSizes]="[10, 20, 50]" [showInfo]="true"></dxo-pager>
+  </dx-data-grid>
+  </div>

@@ -1,0 +1,346 @@
+.labelOperation {
+    width: 100%;
+    display: table;
+    padding-top: 15px;
+}
+.right-box-widget-column-chooser{
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    z-index: 2;
+    cursor: pointer;
+    border: 1px solid #cecece;
+    padding: 7px;
+    border-radius: 3px; 
+}
+
+.margin-top-hyperlink {
+    margin-top: 10px!important;
+}
+
+.displayChart-block {
+    display: block
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+.right-box-widget{
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    z-index: 2;
+}
+
+.captionTitleGrid {
+    font-size: 19px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1050px;
+    padding-top: 28px;
+}
+
+.captionSubTitleGrid {
+    font-size: 13px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1000px;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.italic {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: white !important;
+    font-style: italic !important;
+}
+
+.square {
+    border: 2px solid transparent !important;
+    width: 24px !important;
+    height: 24px !important;
+    float: left !important;
+    border-color: black !important;
+    margin-left: 5px;
+    margin-top: 3px !important;
+}
+
+.padd {
+    padding-left: 5px;
+}
+
+.selected {
+    border: 2px solid aquamarine !important;
+    border-color: aquamarine !important;
+}
+
+.heading {
+    border-right: 1px solid #ccc;
+    background: #f3f3f3;
+}
+
+.grid-export-pdf-icon {
+    position: absolute;
+    top: 10px;
+    left: 18px;
+    z-index: 2;
+}
+
+.custom-excel-icon-mar-left {
+    margin-left: 45px;
+}
+
+.custom-column-chooser-icon-mar-left {
+    margin-left: 90px;
+}
+
+.displayChart {
+    display: none
+}
+
+.bold-icon {
+    font-weight: 700;
+}
+
+.italic-icon {
+    font-style: italic;
+}
+
+.line-icon {
+    text-decoration: underline;
+}
+
+.uppercase-icon {
+    text-transform: uppercase;
+}
+
+.dx-datagrid-group-opened::before {
+    color: #fff !important;
+}
+
+.red {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(226, 60, 76);
+    color: white !important;
+}
+
+.yellow {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(255, 166, 38);
+    color: white !important;
+}
+
+.green {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(101, 172, 80);
+    color: white !important;
+}
+
+.blue {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(89, 143, 216);
+    color: white !important;
+}
+
+.cream {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(255, 166, 38);
+    color: black !important;
+}
+
+.skyblue {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgba(33, 148, 219, 1);
+    color: black !important;
+}
+
+.green-light {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgba(94, 224, 138, 1);
+    color: black !important;
+}
+
+.purple {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(148, 105, 184);
+    color: white !important;
+}
+
+.cyan {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(44, 219, 216);
+    color: white !important;
+}
+
+.grey {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(67, 110, 110);
+    color: white !important;
+}
+
+#scrollview {
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 300px;
+    padding: 20px;
+}
+
+.Maroon {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(128, 0, 0);
+    color: white !important;
+}
+
+.Lime {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(210, 245, 60);
+    color: white !important;
+}
+
+.Purple {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(145, 30, 180);
+    color: white !important;
+}
+
+.Magenta {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(240, 50, 230);
+    color: white !important;
+}
+
+.Brown {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(170, 110, 40);
+    color: white !important;
+}
+
+.Pink {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(250, 190, 190);
+    color: black !important;
+}
+
+.Orange {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(245, 130, 48);
+    color: white !important;
+}
+
+.Navy {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(0, 0, 128);
+    color: white !important;
+}
+
+.Black {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(0, 0, 0);
+    color: white !important;
+}
+
+.Teal {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(0, 128, 128);
+    color: white !important;
+}
+
+.Lavender {
+    display: inline-block !important;
+    position: relative !important;
+    background-color: rgb(230, 190, 255);
+    color: black !important;
+}
+
+.overflow-xscroll {
+    overflow-x: scroll;
+}
+.manage-permission-popup {
+    height: 557px !important;
+    overflow: auto;
+}
+.disable-export{
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+/* 
+.dx-datagrid-headers .dx-header-row > td > .dx-datagrid-text-content
+{
+    white-space: normal !important;
+    vertical-align: top !important;
+}    */
+
+
+/* .dx-datagrid-text-content {
+        overflow: visible !important;
+        text-overflow: initial !important; } */
+
+ @media only screen and (min-width: 1024px) and (max-width: 1170px) {
+    .overflow-xscroll {display: table;}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    .captionTitleGrid {width: 100%;}
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    .captionTitleGrid{width: 100%; padding-top: 36px;}
+    .captionSubTitleGrid{width:100%;}
+    .overflow-xscroll {
+        overflow-x: inherit;
+    }
+}

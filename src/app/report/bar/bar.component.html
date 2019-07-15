@@ -1,0 +1,66 @@
+<div>
+  <dx-chart class="dx-chart-box" (onExporting)="onExporting($event)"
+  id="chart" [dataSource]="dataSource" (onInitialized)="onInitializedEventHandler()"
+   (onPointClick)="pointClick($event)">
+  <div *ngFor="let value of values">
+      <dxi-series valueField="{{value.caption}}" type="{{value.type}}" name="{{value.caption}}"></dxi-series>
+  </div>
+
+  <div>
+      <dxo-scroll-bar [visible]="false"></dxo-scroll-bar>
+      <dxo-zoom-and-pan valueAxis="none" argumentAxis="none" [allowMouseWheel]="false">
+      </dxo-zoom-and-pan>
+  </div>
+
+  <dxo-size [height]="400" [width]="800"></dxo-size>
+  <dxo-loading-indicator [show]="true" text="Loading..."></dxo-loading-indicator>
+  <dxo-argument-axis >
+      <dxo-label [visible]="true">
+      </dxo-label>
+      <dxo-title [text]="FirstName">
+      </dxo-title>
+  </dxo-argument-axis>
+  <dxi-value-axis placeholderSize="7">
+      <dxo-label [visible]="true"></dxo-label>
+      <dxo-title [text]="Quantity">
+      </dxo-title>
+  </dxi-value-axis>
+  <dxo-common-series-settings *ngIf="togglePointLabel" barPadding="{{(100 - widthOfBar) /100}}"
+      argumentField="{{widget.argument}}" type="bar" hoverMode="allArgumentPoints"
+      selectionMode="allArgumentPoints">
+      <dxo-label [customizeText]="customizeLabel" [visible]="true" [format]="{
+          type: 'fixedPoint',
+          precision: 0}">
+      </dxo-label>
+      <dxo-point hoverMode="excludePoints"></dxo-point>
+  </dxo-common-series-settings>
+  <dxo-common-series-settings *ngIf="!togglePointLabel" barPadding="{{100 - widthOfBar/100}}"
+      argumentField="{{argument}}" type="bar" hoverMode="allArgumentPoints"
+      selectionMode="allArgumentPoints">
+      <dxo-label [customizeText]="customizeLabel" [visible]="true" [format]="{
+          type: 'fixedPoint',
+          precision: 0}">
+      </dxo-label>
+      <dxo-point hoverMode="excludePoints"></dxo-point>
+  </dxo-common-series-settings>
+  <dxo-common-axis-settings>
+      <dxo-label [visible]="false"></dxo-label>
+  </dxo-common-axis-settings>
+  <dxo-legend [visible]="true" [customizeText]="customizeLegend">
+      <dxo-border [visible]="true"></dxo-border>
+  </dxo-legend>
+  <dxo-export [enabled]="true"
+      fileName="exportedBar">
+  </dxo-export>
+  <dxo-tooltip [enabled]="true" [shared]="true" [zIndex]="3000"
+      [customizeTooltip]="customizeTooltip">
+  </dxo-tooltip>
+
+  <dxo-title text=" ">
+      <dxo-font [size]="19" [weight]="500"></dxo-font>
+      <dxo-subtitle text="{{''}}">
+          <dxo-font [size]="13"></dxo-font>
+      </dxo-subtitle>
+  </dxo-title>
+</dx-chart>
+</div>

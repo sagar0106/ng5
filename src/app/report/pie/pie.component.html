@@ -1,0 +1,35 @@
+<div>
+<dx-pie-chart class="dx-chart-box" id="pie" type="pie"
+[dataSource]="dataSource" (onExporting)="onExporting($event)"
+ (onPointClick)="pointClick($event)">
+<dxo-loading-indicator [show]="true" text="Loading..."></dxo-loading-indicator>
+<dxo-adaptive-layout [width]="300"> </dxo-adaptive-layout>
+<dxo-legend [visible]="true">
+    <dxo-border [visible]="true"></dxo-border>
+</dxo-legend>
+<dxi-series *ngFor="let value of values" name="{{value.caption}}" argumentField="{{argument}}"
+    valueField="{{value.caption}}">
+    <dxo-label *ngIf="togglePointLabel" [visible]="true" [format]="{
+            type: 'fixedPoint',
+            precision: 0}"
+        [customizeText]="customizeLabel">
+        <dxo-font [size]="16"></dxo-font>
+        <dxo-connector [visible]="true" [width]="1">
+        </dxo-connector>
+    </dxo-label>
+    <dxo-label *ngIf="!togglePointLabel" [visible]="true" [format]="{
+        type: 'fixedPoint',
+        precision: 0}"
+        [customizeText]="customizeLabel">
+        <dxo-font [size]="16"></dxo-font>
+        <dxo-connector [visible]="true" [width]="1">
+        </dxo-connector>
+    </dxo-label>
+</dxi-series>
+  innerWidthOfLarge= Number(window.innerWidth * 94 / 100);
+  <dxo-size [height]="400" [width]="800"></dxo-size>
+<dxo-export
+    fileName="exportedPie"></dxo-export>
+
+</dx-pie-chart>
+</div>

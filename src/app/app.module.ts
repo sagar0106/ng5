@@ -19,6 +19,12 @@ import { ProjectModalComponent } from './project-modal/project-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportComponent } from './report/report.component';
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
+import { GridComponent } from './report/grid/grid.component';
+import { PieComponent } from './report/pie/pie.component';
+import { LineComponent } from './report/line/line.component';
+import { BarComponent } from './report/bar/bar.component';
+import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
+import { DxChartModule } from 'devextreme-angular/ui/chart';
 
 @NgModule({
   declarations: [
@@ -33,6 +39,10 @@ import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
     NavBarComponent,
     ProjectModalComponent,
     ReportComponent,
+    GridComponent,
+    PieComponent,
+    LineComponent,
+    BarComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +50,9 @@ import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
     HttpModule,
     FormsModule,
     BrowserAnimationsModule,
-    DxDataGridModule
+    DxDataGridModule,
+    DxPieChartModule,
+    DxChartModule
   ],
   providers: [AuthService, DataService],
   bootstrap: [AppComponent]
